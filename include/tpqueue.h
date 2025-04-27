@@ -5,15 +5,15 @@
 
 template<typename T>
 class TPQueue {
-private:
+ private:
     struct Node {
         T data;
         Node* next;
-        Node(const T& _data) : data(_data), next(nullptr) {}
+        explicit Node(const T& _data) : data(_data), next(nullptr) {}
     };
-    Node* head; 
+    Node* head;
 
-public:
+ public:
     TPQueue() : head(nullptr) {}
     ~TPQueue() {
         while (head) {
@@ -27,8 +27,7 @@ public:
         if (!head || elem.prior > head->data.prior) {
             newNode->next = head;
             head = newNode;
-        }
-        else {
+        } else {
             Node* current = head;
             while (current->next && current->next->data.prior >= elem.prior) {
                 current = current->next;
